@@ -46,14 +46,14 @@ Thumb code disassemble compare:
    0x31c366d8:  F0 B5            push     {r4, r5, r6, r7, lr}
 
 (lldb) discs -h
-Usage: discs (-f) (-s <addr>) (-l <len>) (-A <arm|arm64>) (-M <arm|thumb>)
+Usage: discs (-f) (-s <addr>) (-c <num>) (-A <arm|arm64>) (-M <arm|thumb>)
 
 Options:
    -h, --help            show this help message and exit
    -s START_ADDR, --start-addr=START_ADDR
                          start address (default: pc)
-   -l LENGTH, --length=LENGTH
-                         decode bytes length (default: 32)
+   -c COUNT, --count=COUNT
+                         decode instruction count (default: 7)
    -A ARCH, --arch=ARCH  arch type: arm,arm64 (default: arm)
    -M MODE, --mode=MODE  mode type: arm,thumb (auto select by cpsr[b:5])
    -f, --full            show full outputs
