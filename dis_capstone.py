@@ -124,6 +124,9 @@ def real_disassemble(debugger, start_addr, disasm_count, disasm_arch, disasm_mod
     process = target.GetProcess()
     thread = process.GetSelectedThread()
     frame = thread.GetSelectedFrame()
+
+    current_pc = frame.GetPCAddress().GetLoadAddress(target)
+
     isFirstLine = True
     for i in range(int(disasm_count)):
         # read bytes
@@ -136,7 +139,7 @@ def real_disassemble(debugger, start_addr, disasm_count, disasm_arch, disasm_mod
             
             # for insn in md.disasm(4, start_addr):
             insn = list(md.disasm(bytes, start_addr))[0]
-            if (isFirstLine):
+            if current_pc == insn.address:
                     print("-> 0x%x:  %-16s %-8s %s" % (insn.address, bytes_to_hex(insn.bytes), insn.mnemonic, insn.op_str))
                     isFirstLine = False
             else:
